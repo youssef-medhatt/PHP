@@ -12,11 +12,15 @@ function drawTable($header, $tableData) {
     }
     echo "</tr></thead><tbody>";
 
-    foreach ($tableData as $row) {
+    foreach ($tableData as $index => $row) {
         echo "<tr>";
-        foreach ($row as  $field) {
+        foreach ($row as $field) {
             echo "<td>{$field}</td>";
         }
+        echo "<td>
+        <a href='delete.php?id=$index' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure?\")'>Delete</a>
+      </td>";
+
         echo "</tr>";
     }
 
@@ -67,4 +71,13 @@ function validatePostData($postData){
         }
     }
     return ["errors" => $errors, "valid_data" => $valid_data];
+}
+
+function deleteCustomer($id, $file = "customer.txt") {
+    $lines = file($file, FILE_IGNORE_NEW_LINES); // Read file into an array
+    
+    if (isset($lines[$id])) {
+        unset($lines[$id]); // Remove the specific line
+        file_put_contents($file, implode("\n", $lines) . "\n"); // Save back to file
+    }
 }

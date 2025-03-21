@@ -33,7 +33,7 @@
 //    print_r($table);
 //    echo "</pre>";
     echo '<h1 class="text-center mt-5 fw-bold text-primary">🎉 Customer List ! 🎉</h1>';
-    $headers = ["ID", "Full Name", "Address", "Skills", "Department"];
+    $headers = ["ID", "Full Name", "Address", "Skills", "Department","Delete"];
 echo '<a href="registration.php" class="btn btn-primary">Add New Customer</a>
 ';
     drawTable($headers, $table);
